@@ -53,7 +53,7 @@
             }
         }
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:9
+            zoomControl:true, maxZoom:18, minZoom:14
         }).fitBounds([[58.849707501535754,11.294118035322164],[58.86541667248651,11.340481334842996]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -72,6 +72,7 @@
         .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
+            map.setMaxBounds(map.getBounds());
         }
         map.createPane('pane_topowebb_0');
         map.getPane('pane_topowebb_0').style.zIndex = 400;
