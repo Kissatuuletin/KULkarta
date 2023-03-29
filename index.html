@@ -53,8 +53,8 @@
             }
         }
         var map = L.map('map', {
-            zoomControl:true, maxZoom:19, minZoom:14
-        }).fitBounds([[58.85007152284778,11.29381280183754],[58.8663729448557,11.335656388785868]]);
+            zoomControl:true, maxZoom:20, minZoom:13
+        }).fitBounds([[58.85456900303674,11.301676467149008],[58.86750832467333,11.331601494953192]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -72,7 +72,6 @@
         .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
-            map.setMaxBounds(map.getBounds());
         }
         map.createPane('pane_OpenStreetMap_0');
         map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
@@ -80,8 +79,8 @@
             pane: 'pane_OpenStreetMap_0',
             opacity: 1.0,
             attribution: '',
-            minZoom: 14,
-            maxZoom: 19,
+            minZoom: 13,
+            maxZoom: 20,
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
@@ -163,7 +162,7 @@
                 pane: 'pane_Bjrkekulturmilj_1',
                 opacity: 1,
                 color: 'rgba(207,23,26,1.0)',
-                dashArray: '10,5,1,5',
+                dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
                 weight: 5.0,
@@ -209,75 +208,6 @@
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['egenskap'] !== null ? autolinker.link(feature.properties['egenskap'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ing_lamn'] !== null ? autolinker.link(feature.properties['ing_lamn'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['pub_av_org'] !== null ? autolinker.link(feature.properties['pub_av_org'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['sen_publi'] !== null ? autolinker.link(feature.properties['sen_publi'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['uttag_dat'] !== null ? autolinker.link(feature.properties['uttag_dat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['antikv_bed'] !== null ? autolinker.link(feature.properties['antikv_bed'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['antikv_mot'] !== null ? autolinker.link(feature.properties['antikv_mot'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['akt_status'] !== null ? autolinker.link(feature.properties['akt_status'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['skadestat'] !== null ? autolinker.link(feature.properties['skadestat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['und_status'] !== null ? autolinker.link(feature.properties['und_status'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['placering'] !== null ? autolinker.link(feature.properties['placering'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['terrang'] !== null ? autolinker.link(feature.properties['terrang'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['orienter'] !== null ? autolinker.link(feature.properties['orienter'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['tradition'] !== null ? autolinker.link(feature.properties['tradition'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['inmat_kval'] !== null ? autolinker.link(feature.properties['inmat_kval'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['inmat_medf'] !== null ? autolinker.link(feature.properties['inmat_medf'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['namn'] !== null ? autolinker.link(feature.properties['namn'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['geometrinr'] !== null ? autolinker.link(feature.properties['geometrinr'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ruin'] !== null ? autolinker.link(feature.properties['ruin'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lan'] !== null ? autolinker.link(feature.properties['lan'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['kommun'] !== null ? autolinker.link(feature.properties['kommun'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['socken'] !== null ? autolinker.link(feature.properties['socken'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -333,22 +263,10 @@
                         <td colspan="2"><strong>Fornlämningsnummer</strong><br />' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Info</strong><br />' + (feature.properties['Info'] !== null ? autolinker.link(feature.properties['Info'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Beskrivning</strong><br />' + (feature.properties['testatt — Sheet1_Field2'] !== null ? autolinker.link(feature.properties['testatt — Sheet1_Field2'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>RAÄ nummer</strong><br />' + (feature.properties['strömstadhällristattribut_Field2'] !== null ? autolinker.link(feature.properties['strömstadhällristattribut_Field2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Fornlämningstyp</strong><br />' + (feature.properties['strömstadhällristattribut_Field3'] !== null ? autolinker.link(feature.properties['strömstadhällristattribut_Field3'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Länk till Fornsök</strong><br />' + (feature.properties['strömstadhällristattribut_Field4'] !== null ? autolinker.link(feature.properties['strömstadhällristattribut_Field4'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Bild</strong><br />' + (feature.properties['strömstadhällristattribut_Field5'] !== null ? autolinker.link(feature.properties['strömstadhällristattribut_Field5'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>strömstadhällristattribut_Field6</strong><br />' + (feature.properties['strömstadhällristattribut_Field6'] !== null ? autolinker.link(feature.properties['strömstadhällristattribut_Field6'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Bild</strong><br />' + (feature.properties['testatt — Sheet1_Field3'] !== null ? autolinker.link(feature.properties['testatt — Sheet1_Field3'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
