@@ -91,7 +91,7 @@ var sidebar = L.control.sidebar('sidebar', {
 
 map.addControl(sidebar);
 
-sidebar.show();
+
 
         map.createPane('pane_OpenStreetMap_0');
         map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
@@ -319,8 +319,9 @@ function showSidebar(stuff) {
                         <td colspan="2"><strong>Bild</strong><br />' + (feature.properties['testatt _1'] !== null ? autolinker.link(feature.properties['testatt _1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
+           
+    sidebar.setContent(popupContent);      
 
-    sidebar.setContent(popupContent);
     sidebar.show();
         }
 
