@@ -58,11 +58,11 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
               highlightLayer.setStyle({
-                color: '#ffff00',
+                color: '#ff9f00',
               });
             } else {
               highlightLayer.setStyle({
-                fillColor: '#ffff00',
+              fillColor: '#ff9f00',
                 fillOpacity: 1
               });
             }
@@ -254,6 +254,7 @@ map.addControl(sidebar);
         map.addLayer(layer_Bjrkemossen_2);
         function pop_Smindustriomrde_3(feature, layer) {
             layer.on({
+                click: showSidebar_smindustri,
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
@@ -261,27 +262,31 @@ map.addControl(sidebar);
                 },
                 mouseover: highlightFeature,
             });
+        }
+     function showSidebar_smindustri(stuff) {
+  console.log(stuff);
+  var feature = stuff.target.feature;
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">lamningsnr</th>\
+                        <th scope="row">Lämningsnummer</th>\
                         <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">lamningtyp</th>\
+                        <th scope="row">Lämningstyp</th>\
                         <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                   <tr>\
+                   <th scope="row">Länk till RAÄ</th>\
+                     <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                   </tr>\
                     <tr>\
-                        <th scope="row">url</th>\
-                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Namn</th>\
+                        <th scope="row">Typ av industri</th>\
                         <td>' + (feature.properties['Namn'] !== null ? autolinker.link(feature.properties['Namn'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
+sidebar.setContent(popupContent);      
+sidebar.show();
         }
-
         var pattern_Smindustriomrde_3_0 = new L.StripePattern({
             weight: 0.3,
             spaceWeight: 2.0,
@@ -326,13 +331,12 @@ map.addControl(sidebar);
             styles: [style_Smindustriomrde_3_0,style_Smindustriomrde_3_1,]
 
 
-
-
         });
         bounds_group.addLayer(layer_Smindustriomrde_3);
         map.addLayer(layer_Smindustriomrde_3);
         function pop_Gravflt_4(feature, layer) {
             layer.on({
+                click: showSidebar_gravflt,
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
                         e.target._eventParents[i].resetStyle(e.target);
@@ -341,7 +345,7 @@ map.addControl(sidebar);
                 mouseover: highlightFeature,
             });
         }
-    function showSidebar(stuff) {
+    function showSidebar_gravflt(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -413,10 +417,10 @@ sidebar.show();
                         e.target._eventParents[i].resetStyle(e.target);
                     }
                 },
-                mouseover: highlightFeature,
+               mouseover: highlightFeature,
             });
         }
- function showSidebar(stuff) {
+ function showSidebar_hog(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -473,7 +477,7 @@ sidebar.show();
                     variables: {}
                 };
                 var marker = L.circleMarker(latlng, style_Hg_5_0(feature));
-                marker.on('click', showSidebar);
+                marker.on('click', showSidebar_hog);
                 return marker;   
             },
         });
@@ -489,7 +493,7 @@ sidebar.show();
                 mouseover: highlightFeature,
             });
         }
-            function showSidebar(stuff) {
+            function showSidebar_rse(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -547,7 +551,7 @@ sidebar.show();
                     variables: {}
                 };
                 var marker = L.circleMarker(latlng, style_Rse_6_0(feature));
-                marker.on('click', showSidebar);
+                marker.on('click', showSidebar_rse);
                 return marker;   
             },
         });
@@ -563,7 +567,7 @@ sidebar.show();
                 mouseover: highlightFeature,
             });
         }
- function showSidebar(stuff) {
+ function showSidebar_indivrigt(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -621,7 +625,7 @@ sidebar.show();
                     variables: {}
                 };
                 var marker = L.circleMarker(latlng, style_Industrivrigt_7_0(feature));
-                marker.on('click', showSidebar);
+                marker.on('click', showSidebar_indivrigt);
                 return marker;   
             },
         });
@@ -637,7 +641,7 @@ sidebar.show();
                 mouseover: highlightFeature,
             });
         }
- function showSidebar(stuff) {
+ function showSidebar_sten(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -694,7 +698,7 @@ sidebar.show();
                     variables: {}
                 };
                 var marker = L.circleMarker(latlng, style_Gravmarkeradavsten_8_0(feature));
-                marker.on('click', showSidebar);
+                marker.on('click', showSidebar_sten);
                 return marker;   
             },
         });
@@ -710,7 +714,7 @@ sidebar.show();
                 mouseover: highlightFeature,
             });
         }
-            function showSidebar(stuff) {
+            function showSidebar_hllrist(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -771,7 +775,7 @@ sidebar.show();
                     variables: {}
                 };
                 var marker = L.circleMarker(latlng, style_Hllristningar_9_0(feature));
-                marker.on('click', showSidebar);
+                marker.on('click', showSidebar_hllrist);
                 return marker;  
             },
         });
