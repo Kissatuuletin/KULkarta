@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <link rel="stylesheet" href="css/L.Control.Sidebar.css">
+        <link rel="stylesheet" href="css/sidebar.css" />
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <div id="sidebar">
+        <h1>Miljökompensation Lursäng</h1>
+   </div>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Bjrkekulturmilj_1.js"></script>
+        <script src="data/Bjrkemossen_2.js"></script>
+        <script src="data/Smindustriomrde_3.js"></script>
+        <script src="data/Gravflt_4.js"></script>
+        <script src="data/Rseberget_5.js"></script>
+        <script src="data/Hg_6.js"></script>
+        <script src="data/Rse_7.js"></script>
+        <script src="data/Torvstrfabrik_8.js"></script>
+        <script src="data/Stensttning_9.js"></script>
+        <script src="data/Gravmarkeradavsten_10.js"></script>
+        <script src="data/Hllristningar_11.js"></script>
+        <script src="js/L.Control.Sidebar.js"></script>
+        <script src="js/sidebar.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:21, minZoom:12
+        }).fitBounds([[58.8509447726432,11.299306292307307],[58.861844089311376,11.33511069570689]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+
+        var sidebar = L.control.sidebar('sidebar', {
+    position: 'right'
+});
+
+map.addControl(sidebar);
+
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 12,
+            maxZoom: 21,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_Bjrkekulturmilj_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMN'] !== null ? autolinker.link(feature.properties['NAMN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BESKRIVNIN'] !== null ? autolinker.link(feature.properties['BESKRIVNIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KATEG_BBR'] !== null ? autolinker.link(feature.properties['KATEG_BBR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_area'] !== null ? autolinker.link(feature.properties['Shape_area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_len'] !== null ? autolinker.link(feature.properties['Shape_len'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Bjrkekulturmilj_1_0() {
+            return {
+                pane: 'pane_Bjrkekulturmilj_1',
+                opacity: 1,
+                color: 'rgba(39,138,76,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 7.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Bjrkekulturmilj_1');
+        map.getPane('pane_Bjrkekulturmilj_1').style.zIndex = 401;
+        map.getPane('pane_Bjrkekulturmilj_1').style['mix-blend-mode'] = 'normal';
+        var layer_Bjrkekulturmilj_1 = new L.geoJson(json_Bjrkekulturmilj_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Bjrkekulturmilj_1',
+            layerName: 'layer_Bjrkekulturmilj_1',
+            pane: 'pane_Bjrkekulturmilj_1',
+            onEachFeature: pop_Bjrkekulturmilj_1,
+            style: style_Bjrkekulturmilj_1_0,
+        });
+        bounds_group.addLayer(layer_Bjrkekulturmilj_1);
+        map.addLayer(layer_Bjrkekulturmilj_1);
+        function pop_Bjrkemossen_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DETALJTYP'] !== null ? autolinker.link(feature.properties['DETALJTYP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADAT'] !== null ? autolinker.link(feature.properties['ADAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Namn'] !== null ? autolinker.link(feature.properties['Namn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_Bjrkemossen_2_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#959c19',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Bjrkemossen_2_0.addTo(map);
+        function style_Bjrkemossen_2_0() {
+            return {
+                pane: 'pane_Bjrkemossen_2',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Bjrkemossen_2_0,
+                interactive: false,
+            }
+        }
+        var pattern_Bjrkemossen_2_1 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#959c19',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_Bjrkemossen_2_1.addTo(map);
+        function style_Bjrkemossen_2_1() {
+            return {
+                pane: 'pane_Bjrkemossen_2',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Bjrkemossen_2_1,
+                interactive: false,
+            }
+        }
+        function style_Bjrkemossen_2_2() {
+            return {
+                pane: 'pane_Bjrkemossen_2',
+                opacity: 1,
+                color: 'rgba(149,156,25,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Bjrkemossen_2');
+        map.getPane('pane_Bjrkemossen_2').style.zIndex = 402;
+        map.getPane('pane_Bjrkemossen_2').style['mix-blend-mode'] = 'normal';
+        var layer_Bjrkemossen_2 = new L.geoJson.multiStyle(json_Bjrkemossen_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Bjrkemossen_2',
+            layerName: 'layer_Bjrkemossen_2',
+            pane: 'pane_Bjrkemossen_2',
+            onEachFeature: pop_Bjrkemossen_2,
+            styles: [style_Bjrkemossen_2_0,style_Bjrkemossen_2_1,style_Bjrkemossen_2_2,]
+        });
+        bounds_group.addLayer(layer_Bjrkemossen_2);
+        map.addLayer(layer_Bjrkemossen_2);
+        function pop_Smindustriomrde_3(feature, layer) {
+            layer.on({
+                click: showSidebar_Smindustriomrde_3,
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            function showSidebar_Smindustriomrde_3(stuff) {
+  console.log(stuff);
+  var feature = stuff.target.feature;
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Namn</th>\
+                        <td>' + (feature.properties['Namn'] !== null ? autolinker.link(feature.properties['Namn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+                sidebar.setContent(popupContent); }
+                sidebar.show();
+        }
+
+        var pattern_Smindustriomrde_3_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#ab5632',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_Smindustriomrde_3_0.addTo(map);
+        function style_Smindustriomrde_3_0() {
+            return {
+                pane: 'pane_Smindustriomrde_3',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Smindustriomrde_3_0,
+                interactive: true,
+            }
+        }
+        function style_Smindustriomrde_3_1() {
+            return {
+                pane: 'pane_Smindustriomrde_3',
+                opacity: 1,
+                color: 'rgba(171,86,50,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Smindustriomrde_3');
+        map.getPane('pane_Smindustriomrde_3').style.zIndex = 403;
+        map.getPane('pane_Smindustriomrde_3').style['mix-blend-mode'] = 'normal';
+        var layer_Smindustriomrde_3 = new L.geoJson.multiStyle(json_Smindustriomrde_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Smindustriomrde_3',
+            layerName: 'layer_Smindustriomrde_3',
+            pane: 'pane_Smindustriomrde_3',
+            onEachFeature: pop_Smindustriomrde_3,
+            styles: [style_Smindustriomrde_3_0,style_Smindustriomrde_3_1,]
+            
+        });
+        bounds_group.addLayer(layer_Smindustriomrde_3);
+        map.addLayer(layer_Smindustriomrde_3);
+        function pop_Gravflt_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            function showSidebar(stuff) {
+  console.log(stuff);
+  var feature = stuff.target.feature;
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['Beskrivnin'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bild</th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+                sidebar.setContent(popupContent); }
+        }
+
+        var pattern_Gravflt_4_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#bb1a37',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Gravflt_4_0.addTo(map);
+        function style_Gravflt_4_0() {
+            return {
+                pane: 'pane_Gravflt_4',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Gravflt_4_0,
+                interactive: true,
+            }
+        }
+        function style_Gravflt_4_1() {
+            return {
+                pane: 'pane_Gravflt_4',
+                opacity: 1,
+                color: 'rgba(187,26,55,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Gravflt_4');
+        map.getPane('pane_Gravflt_4').style.zIndex = 404;
+        map.getPane('pane_Gravflt_4').style['mix-blend-mode'] = 'normal';
+        var layer_Gravflt_4 = new L.geoJson.multiStyle(json_Gravflt_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Gravflt_4',
+            layerName: 'layer_Gravflt_4',
+            pane: 'pane_Gravflt_4',
+            onEachFeature: pop_Gravflt_4,
+            styles: [style_Gravflt_4_0,style_Gravflt_4_1,]
+        });
+        var marker = L.shapeMarker(latlng, style_hllristningstrmstad_3_0(feature));
+                marker.on('click', showSidebar);
+                return marker;
+
+        bounds_group.addLayer(layer_Gravflt_4);
+        map.addLayer(layer_Gravflt_4);
+        function pop_Rseberget_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Namn</th>\
+                        <td>' + (feature.properties['Namn'] !== null ? autolinker.link(feature.properties['Namn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Rseberget_5_0() {
+            return {
+                pane: 'pane_Rseberget_5',
+                opacity: 1,
+                color: 'rgba(174,174,174,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Rseberget_5');
+        map.getPane('pane_Rseberget_5').style.zIndex = 405;
+        map.getPane('pane_Rseberget_5').style['mix-blend-mode'] = 'normal';
+        var layer_Rseberget_5 = new L.geoJson(json_Rseberget_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Rseberget_5',
+            layerName: 'layer_Rseberget_5',
+            pane: 'pane_Rseberget_5',
+            onEachFeature: pop_Rseberget_5,
+            style: style_Rseberget_5_0,
+        });
+        bounds_group.addLayer(layer_Rseberget_5);
+        map.addLayer(layer_Rseberget_5);
+        function pop_Hg_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Hg_6_0() {
+            return {
+                pane: 'pane_Hg_6',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Hg_6');
+        map.getPane('pane_Hg_6').style.zIndex = 406;
+        map.getPane('pane_Hg_6').style['mix-blend-mode'] = 'normal';
+        var layer_Hg_6 = new L.geoJson(json_Hg_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Hg_6',
+            layerName: 'layer_Hg_6',
+            pane: 'pane_Hg_6',
+            onEachFeature: pop_Hg_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Hg_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Hg_6);
+        map.addLayer(layer_Hg_6);
+        function pop_Rse_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Rse_7_0() {
+            return {
+                pane: 'pane_Rse_7',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(48,48,48,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(98,121,194,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Rse_7');
+        map.getPane('pane_Rse_7').style.zIndex = 407;
+        map.getPane('pane_Rse_7').style['mix-blend-mode'] = 'normal';
+        var layer_Rse_7 = new L.geoJson(json_Rse_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Rse_7',
+            layerName: 'layer_Rse_7',
+            pane: 'pane_Rse_7',
+            onEachFeature: pop_Rse_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Rse_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Rse_7);
+        map.addLayer(layer_Rse_7);
+        function pop_Torvstrfabrik_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Torvstrfabrik_8_0() {
+            return {
+                pane: 'pane_Torvstrfabrik_8',
+                shape: 'diamond',
+                radius: 9.2,
+                opacity: 1,
+                color: 'rgba(47,6,10,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(187,28,90,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Torvstrfabrik_8');
+        map.getPane('pane_Torvstrfabrik_8').style.zIndex = 408;
+        map.getPane('pane_Torvstrfabrik_8').style['mix-blend-mode'] = 'normal';
+        var layer_Torvstrfabrik_8 = new L.geoJson(json_Torvstrfabrik_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Torvstrfabrik_8',
+            layerName: 'layer_Torvstrfabrik_8',
+            pane: 'pane_Torvstrfabrik_8',
+            onEachFeature: pop_Torvstrfabrik_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Torvstrfabrik_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Torvstrfabrik_8);
+        map.addLayer(layer_Torvstrfabrik_8);
+        function pop_Stensttning_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Stensttning_9_0() {
+            return {
+                pane: 'pane_Stensttning_9',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,126,22,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Stensttning_9');
+        map.getPane('pane_Stensttning_9').style.zIndex = 409;
+        map.getPane('pane_Stensttning_9').style['mix-blend-mode'] = 'normal';
+        var layer_Stensttning_9 = new L.geoJson(json_Stensttning_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Stensttning_9',
+            layerName: 'layer_Stensttning_9',
+            pane: 'pane_Stensttning_9',
+            onEachFeature: pop_Stensttning_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Stensttning_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Stensttning_9);
+        map.addLayer(layer_Stensttning_9);
+        function pop_Gravmarkeradavsten_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Gravmarkeradavsten_10_0() {
+            return {
+                pane: 'pane_Gravmarkeradavsten_10',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,199,65,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Gravmarkeradavsten_10');
+        map.getPane('pane_Gravmarkeradavsten_10').style.zIndex = 410;
+        map.getPane('pane_Gravmarkeradavsten_10').style['mix-blend-mode'] = 'normal';
+        var layer_Gravmarkeradavsten_10 = new L.geoJson(json_Gravmarkeradavsten_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Gravmarkeradavsten_10',
+            layerName: 'layer_Gravmarkeradavsten_10',
+            pane: 'pane_Gravmarkeradavsten_10',
+            onEachFeature: pop_Gravmarkeradavsten_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Gravmarkeradavsten_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Gravmarkeradavsten_10);
+        map.addLayer(layer_Gravmarkeradavsten_10);
+        function pop_Hllristningar_11(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['hallristattributer — testatt__sheet1_Field2'] !== null ? autolinker.link(feature.properties['hallristattributer — testatt__sheet1_Field2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bild</th>\
+                        <td>' + (feature.properties['hallristattributer — testatt__sheet1_Field3'] !== null ? autolinker.link(feature.properties['hallristattributer — testatt__sheet1_Field3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Hllristningar_11_0() {
+            return {
+                pane: 'pane_Hllristningar_11',
+                shape: 'diamond',
+                radius: 8.4,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Hllristningar_11');
+        map.getPane('pane_Hllristningar_11').style.zIndex = 411;
+        map.getPane('pane_Hllristningar_11').style['mix-blend-mode'] = 'normal';
+        var layer_Hllristningar_11 = new L.geoJson(json_Hllristningar_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Hllristningar_11',
+            layerName: 'layer_Hllristningar_11',
+            pane: 'pane_Hllristningar_11',
+            onEachFeature: pop_Hllristningar_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Hllristningar_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Hllristningar_11);
+        map.addLayer(layer_Hllristningar_11);
+        setBounds();
+        var i = 0;
+        layer_Bjrkemossen_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 12pt; font-family: \'Alegreya Sans\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Bjrkemossen_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Rseberget_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #323232; font-size: 12pt; font-family: \'Alegreya Sans\', sans-serif;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        });
+        
+        </script>
+        
+    </body>
+</html>
