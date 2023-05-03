@@ -59,11 +59,11 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
               highlightLayer.setStyle({
-                color: '#ffff00',
+             color: '#ffff66',
               });
             } else {
               highlightLayer.setStyle({
-                fillColor: '#ffff00',
+                fillColor: '#ffff22',
                 fillOpacity: 1
               });
             }
@@ -283,7 +283,7 @@ map.addControl(sidebar);
                         <td>' + (feature.properties['Namn'] !== null ? autolinker.link(feature.properties['Namn'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-                sidebar.setContent(popupContent); }
+                sidebar.setContent(popupContent,); }
                 sidebar.show();
         }
 
@@ -359,6 +359,9 @@ map.addControl(sidebar);
                     <tr>\
                         <th scope="row">Lämningstyp</th>\
                         <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
@@ -494,7 +497,11 @@ function showSidebar_hog(stuff) {
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
 sidebar.setContent(popupContent);      
@@ -565,7 +572,11 @@ sidebar.show();
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
@@ -637,7 +648,11 @@ sidebar.show();
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
@@ -710,7 +725,11 @@ sidebar.show();        }
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
@@ -781,7 +800,11 @@ sidebar.show();        }
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
