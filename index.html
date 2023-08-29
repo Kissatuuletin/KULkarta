@@ -23,6 +23,10 @@
     </head>
     <div id="sidebar">
         <h1>Miljökompensation Lursäng</h1>
+        <url>Denna webbkarta visar fornlämningar och kulturhistoriska lämningar som berörs av miljökompensationen i Lursäng.<br><br>
+            För att navigera bland lämningarna, klicka på områden och punkter som syns på kartan.<br> <br>
+            Informationen som används i denna karta har hämtats från <a href="https://app.raa.se/open/fornsok/"> Riksantikvarieämbetet.</a>
+        </p>
    </div>
     <body>
         <div id="map">
@@ -69,7 +73,7 @@
             }
         }
         var map = L.map('map', {
-            zoomControl:true, maxZoom:21, minZoom:12
+            zoomControl:true, maxZoom:19, minZoom:13
         }).fitBounds([[58.8509447726432,11.299306292307307],[58.861844089311376,11.33511069570689]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -103,7 +107,7 @@ map.addControl(sidebar);
             minZoom: 12,
             maxZoom: 21,
             minNativeZoom: 0,
-            maxNativeZoom: 19
+            maxNativeZoom: 18
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
