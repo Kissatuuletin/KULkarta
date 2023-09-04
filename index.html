@@ -7,7 +7,8 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <link rel="stylesheet" href="css/L.Control.Sidebar.css">
         <link rel="stylesheet" href="css/sidebar.css"/>
@@ -108,6 +109,7 @@ map.addControl(sidebar);
             maxZoom: 21,
             minNativeZoom: 0,
             maxNativeZoom: 18
+       //     accessToken: '<kaAdxWYdYW3HpDSwFwwl7F2TQeOWA496BEnBmz3teFnPPNJKgFm73lvI2Uxz8CrQ>'
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
@@ -194,12 +196,12 @@ map.addControl(sidebar);
         }
 
         var pattern_Bjrkemossen_2_0 = new L.StripePattern({
-            weight: 0.3,
+            weight: 0.4,
             spaceWeight: 2.0,
-            color: '#959c19',
+            color: '#c2ae19',
             opacity: 1.0,
             spaceOpacity: 0,
-            angle: 315
+            angle: 3
         });
         pattern_Bjrkemossen_2_0.addTo(map);
         function style_Bjrkemossen_2_0() {
@@ -212,12 +214,12 @@ map.addControl(sidebar);
             }
         }
         var pattern_Bjrkemossen_2_1 = new L.StripePattern({
-            weight: 0.3,
+            weight: 0.4,
             spaceWeight: 2.0,
-            color: '#959c19',
+            color: '#c59c19',
             opacity: 1.0,
             spaceOpacity: 0,
-            angle: 225
+            angle: 50
         });
         pattern_Bjrkemossen_2_1.addTo(map);
         function style_Bjrkemossen_2_1() {
@@ -233,7 +235,7 @@ map.addControl(sidebar);
             return {
                 pane: 'pane_Bjrkemossen_2',
                 opacity: 1,
-                color: 'rgba(220,222,40,1.0)',
+                color: 'rgba(260,202,40,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -930,13 +932,14 @@ sidebar.show();        }
         bounds_group.addLayer(layer_Hllristningar_11);
         map.addLayer(layer_Hllristningar_11);
         setBounds();
+
         var i = 0;
         layer_Bjrkemossen_2.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 12pt; font-family: \'Alegreya Sans\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Bjrkemossen_2'});
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #000; font-size: 14pt; font-family: \'Alegreya Sans\', sans-serif; text-shadow: -1px -1px 1px #ffffff; ">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Bjrkemossen_2'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -949,7 +952,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #323232; font-size: 12pt; font-family: \'Alegreya Sans\', sans-serif;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
+            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #000; font-size: 14pt; font-family: \'Alegreya Sans\', sans-serif; text-shadow: -1px -1px 1px #ffffff;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
