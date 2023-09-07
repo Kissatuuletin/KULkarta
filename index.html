@@ -259,6 +259,7 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Bjrkemossen_2);
         map.addLayer(layer_Bjrkemossen_2);
+
         function pop_Smindustriomrde_3(feature, layer) {
             layer.on({
                 click: showSidebar_smindustri,
@@ -336,7 +337,6 @@ map.addControl(sidebar);
             pane: 'pane_Smindustriomrde_3',
             onEachFeature: pop_Smindustriomrde_3,
             styles: [style_Smindustriomrde_3_0,style_Smindustriomrde_3_1,]
-            
         });
         bounds_group.addLayer(layer_Smindustriomrde_3);
         map.addLayer(layer_Smindustriomrde_3);
@@ -429,7 +429,7 @@ map.addControl(sidebar);
         bounds_group.addLayer(layer_Gravflt_4);
         map.addLayer(layer_Gravflt_4);
 
-        function pop_Fossilkermark_6 (feature, layer) {
+        function pop_Fossilkermark_6(feature, layer) {
             layer.on({
                 click: showSidebar_Fossilkermark,
                 mouseout: function(e) {
@@ -439,7 +439,6 @@ map.addControl(sidebar);
                 },
                 mouseover: highlightFeature,
             });
-        }
             function showSidebar_Fossilkermark(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
@@ -461,16 +460,13 @@ map.addControl(sidebar);
                     </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
-                        <td>' + (feature.properties['Beskrivnin'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Bild</th>\
-                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                        <td>' + (feature.properties['beskr'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-                sidebar.setContent(popupContent); 
+                sidebar.setContent(popupContent); }
             sidebar.show();
         }
+
         var pattern_Fossilkermark_6_0 = new L.StripePattern({
             weight: 0.3,
             spaceWeight: 2.0,
@@ -503,7 +499,7 @@ map.addControl(sidebar);
             }
         }
         map.createPane('pane_Fossilkermark_6');
-        map.getPane('pane_Fossilkermark_6').style.zIndex = 412;
+        map.getPane('pane_Fossilkermark_6').style.zIndex = 413;
         map.getPane('pane_Fossilkermark_6').style['mix-blend-mode'] = 'normal';
         var layer_Fossilkermark_6 = new L.geoJson.multiStyle(json_Fossilkermark_6, {
             attribution: '',
@@ -516,8 +512,6 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Fossilkermark_6);
         map.addLayer(layer_Fossilkermark_6);
-
-
 
         function pop_Rseberget_5(feature, layer) {
             layer.on({
@@ -568,6 +562,7 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Rseberget_5);
         map.addLayer(layer_Rseberget_5);
+
         function pop_Hg_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -578,7 +573,7 @@ map.addControl(sidebar);
                 mouseover: highlightFeature,
             });
         }
-function showSidebar_hog(stuff) {
+        function showSidebar_hog(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
             var popupContent = '<table>\
@@ -643,6 +638,7 @@ sidebar.show();
         });
         bounds_group.addLayer(layer_Hg_6);
         map.addLayer(layer_Hg_6);
+
         function pop_Rse_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -837,16 +833,17 @@ sidebar.show();        }
         function style_Stensttning_9_0() {
             return {
                 pane: 'pane_Stensttning_9',
-                radius: 6.0,
+                shape: 'triangle',
+                radius: 9.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(16,126,22,1.0)',
+                fillColor: 'rgba(81,81,81,1.0)',
                 interactive: true,
             }
         }
@@ -865,7 +862,7 @@ sidebar.show();        }
                     feature: feature,
                     variables: {}
                 };
-                var marker = L.circleMarker(latlng, style_Stensttning_9_0(feature));
+                var marker = L.shapeMarker(latlng, style_Stensttning_9_0(feature));
                 marker.on('click', showSidebar_stensattning);
                 return marker;               },
         });
@@ -1058,10 +1055,10 @@ sidebar.show();        }
             resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4, layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4, layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         </script>     
     </body>
