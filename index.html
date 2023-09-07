@@ -51,6 +51,7 @@
         <script src="data/Rseberget_5.js"></script>
         <script src="data/Hg_6.js"></script>
         <script src="data/Rse_7.js"></script>
+        <script src="data/Fossilkermark_6.js"></script>
         <script src="data/Torvstrfabrik_8.js"></script>
         <script src="data/Stensttning_9.js"></script>
         <script src="data/Gravmarkeradavsten_10.js"></script>
@@ -339,6 +340,7 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Smindustriomrde_3);
         map.addLayer(layer_Smindustriomrde_3);
+
         function pop_Gravflt_4(feature, layer) {
             layer.on({
                 click: showSidebar_gravflt,
@@ -426,6 +428,97 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Gravflt_4);
         map.addLayer(layer_Gravflt_4);
+
+        function pop_Fossilkermark_6 (feature, layer) {
+            layer.on({
+                click: showSidebar_Fossilkermark,
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+            function showSidebar_Fossilkermark(stuff) {
+  console.log(stuff);
+  var feature = stuff.target.feature;
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RAÄ nummer</th>\
+                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['Beskrivnin'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bild</th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+                sidebar.setContent(popupContent); 
+            sidebar.show();
+        }
+        var pattern_Fossilkermark_6_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#bb1aff',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 300
+        });
+        pattern_Fossilkermark_6_0.addTo(map);
+        function style_Fossilkermark_6_0() {
+            return {
+                pane: 'pane_Fossilkermark_6',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Fossilkermark_6_0,
+                interactive: true,
+            }
+        }
+        function style_Fossilkermark_6_1() {
+            return {
+                pane: 'pane_Fossilkermark_6',
+                opacity: 1,
+                color: 'rgba(90,80,240,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Fossilkermark_6');
+        map.getPane('pane_Fossilkermark_6').style.zIndex = 412;
+        map.getPane('pane_Fossilkermark_6').style['mix-blend-mode'] = 'normal';
+        var layer_Fossilkermark_6 = new L.geoJson.multiStyle(json_Fossilkermark_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Fossilkermark_6',
+            layerName: 'layer_Fossilkermark_6',
+            pane: 'pane_Fossilkermark_6',
+            onEachFeature: pop_Fossilkermark_6,
+            styles: [style_Fossilkermark_6_0,style_Fossilkermark_6_1,]
+        });
+        bounds_group.addLayer(layer_Fossilkermark_6);
+        map.addLayer(layer_Fossilkermark_6);
+
+
+
         function pop_Rseberget_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -854,6 +947,7 @@ sidebar.show();        }
         });
         bounds_group.addLayer(layer_Gravmarkeradavsten_10);
         map.addLayer(layer_Gravmarkeradavsten_10);
+
         function pop_Hllristningar_11(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -959,15 +1053,15 @@ sidebar.show();        }
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         map.on("zoomend", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4, layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4, layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         </script>     
     </body>
