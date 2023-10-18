@@ -13,11 +13,10 @@
         <link rel="stylesheet" href="css/L.Control.Sidebar.css">
         <link rel="stylesheet" href="css/sidebar.css"/>
         <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
+    html, body, #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+        a:hover {
+            color: inherit;
+            text-decoration: none;
         }
         </style>
         <title></title>
@@ -31,10 +30,12 @@
    </div>
     <body>
         <div id="map">
+            <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
         </div>
+        <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
-        <script src="js/multi-style-layer.js"></script>
+        <script src="js/multi-style-layer.js"></script>     
         <script src="js/leaflet-svg-shape-markers.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
@@ -58,6 +59,7 @@
         <script src="data/Hllristningar_11.js"></script>
         <script src="js/L.Control.Sidebar.js"></script>
         <script src="js/sidebar.js"></script>
+        <script src="js/SmoothWheelZoom.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -74,46 +76,34 @@
               });
             }
         }
-        var map = L.map('map', {
-            zoomControl:true, maxZoom:19, minZoom:13
-        }).fitBounds([[58.8509447726432,11.299306292307307],[58.861844089311376,11.33511069570689]]);
+
+const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
+var map = L.map('map', {
+  scrollWheelZoom: false, // disable original zoom function
+  smoothWheelZoom: true,  // enable smooth zoom 
+  smoothSensitivity: 1,   // zoom speed. default is 1
+})
+      .setView([58.8573578, 11.3112018], 15,3); //starting position
+      L.tileLayer(`https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=${maptilerApiKey}`, {
+            tileSize: 512,
+            zoomOffset: -1,
+            minZoom: 1,
+            attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+            crossOrigin: true
+        }).addTo(map);
+
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        var measureControl = new L.Control.Measure({
-            position: 'topleft',
-            primaryLengthUnit: 'meters',
-            secondaryLengthUnit: 'kilometers',
-            primaryAreaUnit: 'sqmeters',
-            secondaryAreaUnit: 'hectares'
-        });
-        measureControl.addTo(map);
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .innerHTML = '';
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
         var sidebar = L.control.sidebar('sidebar', {
     position: 'right'
+    
 });
 map.addControl(sidebar);
 
-        map.createPane('pane_OpenStreetMap_0');
-        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
-        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            pane: 'pane_OpenStreetMap_0',
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 12,
-            maxZoom: 21,
-            minNativeZoom: 0,
-            maxNativeZoom: 18
-       //     accessToken: '<kaAdxWYdYW3HpDSwFwwl7F2TQeOWA496BEnBmz3teFnPPNJKgFm73lvI2Uxz8CrQ>'
-        });
-        layer_OpenStreetMap_0;
-        map.addLayer(layer_OpenStreetMap_0);
         function pop_Bjrkekulturmilj_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -748,6 +738,10 @@ sidebar.show();
                     <tr>\
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bild</th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
