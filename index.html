@@ -47,7 +47,9 @@
         <script src="js/leaflet-measure.js"></script>
         <script src="data/Bjrkekulturmilj_1.js"></script>
         <script src="data/Bjrkemossen_2.js"></script>
+        <script src="data/Promenadstrk_2.js"></script>
         <script src="data/Smindustriomrde_3.js"></script>
+        <script src="data/Hlvg_4.js"></script>
         <script src="data/Gravflt_4.js"></script>
         <script src="data/Rseberget_5.js"></script>
         <script src="data/Hg_6.js"></script>
@@ -819,6 +821,10 @@ sidebar.show();        }
                     <tr>\
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Bild</th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
