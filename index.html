@@ -220,7 +220,7 @@ map.addControl(sidebar);
                 pane: 'pane_Bjrkemossen_2',
                 stroke: false, 
                 fill: true,
-                fillOpacity: 0.4,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(137,209,106,1.0)',
                 interactive: false,
             }
@@ -883,14 +883,14 @@ sidebar.show();
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-                sidebar.setContent(popupContent);      
+sidebar.setContent(popupContent);      
 sidebar.show();        }
 
         function style_Torvstrfabrik_8_0() {
             return {
                 pane: 'pane_Torvstrfabrik_8',
                 shape: 'diamond',
-                radius: 12.4,
+                radius: 11,
                 opacity: 1,
                 color: 'rgba(94,88,68,1.0)',
                 dashArray: '',
