@@ -8,7 +8,7 @@
         }
         .info {
             padding: 6px 8px;
-            font: 14px/16px "alegreya sans", Arial, Helvetica, sans-serif;
+            font: 14px/16px "alegreya sans", Helvetica, sans-serif;
             background: white;
             background: rgba(255,255,255,0.8);
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -48,7 +48,7 @@
             color: #000000 !important;
         }
         .abstract {
-            font: bold 18px 'alegreya sans', Monaco, monospace;
+            font: bold 18px "alegreya sans", Monaco, monospace;
             text-indent: 1px;
             background-color: #f8f8f8 !important;
             width: 30px !important;
