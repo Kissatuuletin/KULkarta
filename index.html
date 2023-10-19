@@ -1174,6 +1174,23 @@ sidebar.show();        }
         });
         bounds_group.addLayer(layer_Hllristningar_11);
         map.addLayer(layer_Hllristningar_11);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{
+            '<img src="legend/Torvstrfabrik_13.png" /> Torvströfabrik': layer_Torvstrfabrik_8,
+            '<img src="legend/Hllristningar_12.png" /> Hällristningar': layer_Hllristningar_11,
+            '<img src="legend/Stensttning_11.png" /> Stensättning': layer_Stensttning_9,
+            '<img src="legend/Hg_10.png" /> Hög': layer_Hg_6,
+            '<img src="legend/Rse_9.png" /> Röse': layer_Rse_7,
+            '<img src="legend/Gravmarkeradavsten_8.png" /> Grav markerad av sten': layer_Gravmarkeradavsten_10,
+            '<img src="legend/Fossilkermark_7.png" /> Fossil åkermark': layer_Fossilkermark_6,
+            '<img src="legend/Gravflt_6.png" /> Gravfält': layer_Gravflt_4,
+            '<img src="legend/Smindustriomrde_5.png" /> Småindustriområde': layer_Smindustriomrde_3,
+            '<img src="legend/Hlvg_4.png" /> Hålväg': layer_Hlvg_4,
+            '<img src="legend/Bjrkekulturmilj_3.png" /> Björke kulturmiljö': layer_Bjrkekulturmilj_1,
+            '<img src="legend/Promenadstrk_2.png" /> Promenadstråk': layer_Promenadstrk_2,
+            '<img src="legend/Rseberget_1.png" /> Röseberget': layer_Rseberget_5,
+            '<img src="legend/Bjrkemossen_0.png" /> Björkemossen': layer_Bjrkemossen_2,},{collapsed:false}).addTo(map);
+      
         setBounds();
 
         var i = 0;
