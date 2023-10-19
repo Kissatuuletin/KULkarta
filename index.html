@@ -162,6 +162,7 @@ map.addControl(sidebar);
         });
         bounds_group.addLayer(layer_Bjrkekulturmilj_1);
         map.addLayer(layer_Bjrkekulturmilj_1);
+
         function pop_Bjrkemossen_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -421,7 +422,7 @@ map.addControl(sidebar);
                         <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Bild</th>\
+                        <th scope="row"></th>\
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -505,7 +506,7 @@ map.addControl(sidebar);
                         <td>' + (feature.properties['Beskrivnin'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Bild</th>\
+                        <th scope="row"></th>\
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -726,6 +727,10 @@ map.addControl(sidebar);
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row"></th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
 sidebar.setContent(popupContent);      
 sidebar.show();     
@@ -802,6 +807,9 @@ sidebar.show();
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <th scope="row"></th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
 sidebar.show();
@@ -844,6 +852,7 @@ sidebar.show();
         });
         bounds_group.addLayer(layer_Rse_7);
         map.addLayer(layer_Rse_7);
+
         function pop_Torvstrfabrik_8(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -879,7 +888,7 @@ sidebar.show();
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Bild</th>\
+                        <th scope="row"></th>\
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -918,13 +927,14 @@ sidebar.show();        }
                     feature: feature,
                     variables: {}
                 };
-                var marker = L.circleMarker(latlng, style_Torvstrfabrik_8_0(feature));
+                var marker = L.shapeMarker(latlng, style_Torvstrfabrik_8_0(feature));
                 marker.on('click', showSidebar_torvstrofabrik);
                 return marker;      
                      },
         });
         bounds_group.addLayer(layer_Torvstrfabrik_8);
         map.addLayer(layer_Torvstrfabrik_8);
+
         function pop_Stensttning_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -960,7 +970,7 @@ sidebar.show();        }
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Bild</th>\
+                        <th scope="row"></th>\
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1005,6 +1015,7 @@ sidebar.show();        }
         });
         bounds_group.addLayer(layer_Stensttning_9);
         map.addLayer(layer_Stensttning_9);
+
         function pop_Gravmarkeradavsten_10(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -1038,6 +1049,9 @@ sidebar.show();        }
                     <tr>\
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <th scope="row"></th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
                 sidebar.setContent(popupContent);      
@@ -1075,7 +1089,7 @@ sidebar.show();        }
                     feature: feature,
                     variables: {}
                 };
-                var marker = L.circleMarker(latlng, style_Gravmarkeradavsten_10_0(feature));
+                var marker = L.shapeMarker(latlng, style_Gravmarkeradavsten_10_0(feature));
                 marker.on('click', showSidebar_Gravmarksten);
                 return marker;  
             },
@@ -1114,7 +1128,7 @@ sidebar.show();        }
                         <td>' + (feature.properties['hallristattributer — testatt__sheet1_Field2'] !== null ? autolinker.link(feature.properties['hallristattributer — testatt__sheet1_Field2'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Bild</th>\
+                        <th scope="row"></th>\
                         <td>' + (feature.properties['hallristattributer — testatt__sheet1_Field3'] !== null ? autolinker.link(feature.properties['hallristattributer — testatt__sheet1_Field3'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
