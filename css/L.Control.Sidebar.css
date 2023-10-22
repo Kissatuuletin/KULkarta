@@ -58,27 +58,28 @@
         border-radius: 0; }
         .leaflet-touch .leaflet-sidebar > .leaflet-control {
           border: 0; } }
-  @media (min-width: 350px) and (max-width: 900px) {
+  @media (min-width: 340px) and (max-width: 999px) {
     .leaflet-sidebar {
-      width: 350px; }
+      width: 320px; }
       .leaflet-sidebar.left.visible ~ .leaflet-left {
         left: 305px; }
       .leaflet-sidebar.right.visible ~ .leaflet-right {
         right: 305px; } }
-  @media (min-width: 900px) and (max-width: 1199px) {
+  @media (min-width: 1000px) and (max-width: 1299px) {
     .leaflet-sidebar {
-      width: 390px; }
+      width: 440px; }
       .leaflet-sidebar.left.visible ~ .leaflet-left {
-        left: 390px; }
+        left: 440px; }
       .leaflet-sidebar.right.visible ~ .leaflet-right {
-        right: 390px; } }
-  @media (min-width: 1200px) {
+        right: 440px; } }
+  @media (min-width: 1300px) {
     .leaflet-sidebar {
-      width: 450px; }
+      width: 540px; }
       .leaflet-sidebar.left.visible ~ .leaflet-left {
         left: 460px; }
       .leaflet-sidebar.right.visible ~ .leaflet-right {
         right: 460px; } }
+        
   .leaflet-sidebar .close {
     position: absolute;
     right: 24px;
