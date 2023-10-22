@@ -121,14 +121,14 @@ map.on('fullscreenchange', function () {
     }
 });
         function pop_Bjrkekulturmilj_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //        layer.on({
+    //            mouseout: function(e) {
+     //               for (i in e.target._eventParents) {
+     //                   e.target._eventParents[i].resetStyle(e.target);
+ //                  }
+   //             },
      //             mouseover: highlightFeature,
-            });
+ //           });
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['NAMN'] !== null ? autolinker.link(feature.properties['NAMN'].toLocaleString()) : '') + '</td>\
@@ -179,11 +179,11 @@ map.on('fullscreenchange', function () {
 
         function pop_Bjrkemossen_2(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+   //                 for (i in e.target._eventParents) {
+   //                     e.target._eventParents[i].resetStyle(e.target);
+   //                 }
+   //             },
            //       mouseover: highlightFeature,
             });
             var popupContent = '<table>\
@@ -321,11 +321,11 @@ map.on('fullscreenchange', function () {
         function pop_Smindustriomrde_3(feature, layer) {
             layer.on({
                 click: showSidebar_smindustri,
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+     //           },
       //            mouseover: highlightFeature,
             });
             
@@ -403,11 +403,11 @@ map.on('fullscreenchange', function () {
         function pop_Hlvg_4(feature, layer) {
             layer.on({
                 click: showSidebar_Hlvg,
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+ //               mouseout: function(e) {
+ //                   for (i in e.target._eventParents) {
+ //                       e.target._eventParents[i].resetStyle(e.target);
+ //                   }
+ //               },
       //            mouseover: highlightFeature,
             });
         }
@@ -488,11 +488,11 @@ map.on('fullscreenchange', function () {
         function pop_Gravflt_4(feature, layer) {
             layer.on({
                 click: showSidebar_gravflt,
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+  //              mouseout: function(e) {
+  //                  for (i in e.target._eventParents) {
+  //                      e.target._eventParents[i].resetStyle(e.target);
+  //                  }
+  //              },
       //            mouseover: highlightFeature,
             });
         }
@@ -576,11 +576,11 @@ map.on('fullscreenchange', function () {
         function pop_Fossilkermark_6(feature, layer) {
             layer.on({
                 click: showSidebar_Fossilkermark,
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+   //             mouseout: function(e) {
+   //                 for (i in e.target._eventParents) {
+   //                     e.target._eventParents[i].resetStyle(e.target);
+   //                 }
+   //             },
       //            mouseover: highlightFeature,
             });
             function showSidebar_Fossilkermark(stuff) {
@@ -659,11 +659,11 @@ map.on('fullscreenchange', function () {
 
         function pop_Rseberget_5(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            },
     //              mouseover: highlightFeature,
             });
             var popupContent = '<table>\
@@ -709,11 +709,11 @@ map.on('fullscreenchange', function () {
 
         function pop_Hg_6(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            },
      //             mouseover: highlightFeature,
             });
         }
@@ -789,11 +789,11 @@ sidebar.show();
 
         function pop_Rse_7(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            },
       //            mouseover: highlightFeature,
             });
         }
@@ -870,11 +870,11 @@ sidebar.show();
 
         function pop_Torvstrfabrik_8(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+   //             mouseout: function(e) {
+   //                 for (i in e.target._eventParents) {
+   //                     e.target._eventParents[i].resetStyle(e.target);
+   //                 }
+   //             },
         //          mouseover: highlightFeature,
             });
         }
@@ -952,11 +952,11 @@ sidebar.show();        }
 
         function pop_Stensttning_9(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+     //           mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            },
        //           mouseover: highlightFeature,
             });
         }
@@ -1033,11 +1033,11 @@ sidebar.show();        }
 
         function pop_Gravmarkeradavsten_10(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+     //           mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+    //                    e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            }, 
        //           mouseover: highlightFeature,
             });
         }
@@ -1114,11 +1114,11 @@ sidebar.show();        }
 
         function pop_Hllristningar_11(feature, layer) {
             layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
+    //            mouseout: function(e) {
+    //                for (i in e.target._eventParents) {
+     //                   e.target._eventParents[i].resetStyle(e.target);
+    //                }
+    //            },
    //               mouseover: highlightFeature,
             });
         }
@@ -1141,6 +1141,10 @@ sidebar.show();        }
                     <tr>\
                         <th scope="row">Beskrivning</th>\
                         <td>' + (feature.properties['hallristattributer — testatt__sheet1_Field2'] !== null ? autolinker.link(feature.properties['hallristattributer — testatt__sheet1_Field2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row"></th>\
