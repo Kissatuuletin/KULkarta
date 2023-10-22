@@ -585,12 +585,12 @@ map.on('fullscreenchange', function () {
         function style_Bjrkekulturmilj_1_0() {
             return {
                 pane: 'pane_Bjrkekulturmilj_1',
-                opacity: 0.5,
+                opacity: 0.4,
                 color: 'rgba(106,95,0,1.0)',
-                dashArray: '3,12',
+                dashArray: '4,13',
                 lineCap: 'round',
                 lineJoin: 'round',
-                weight: 8.0,
+                weight: 9.0,
                 fillOpacity: 0,
                 interactive: false,
             }
@@ -637,7 +637,7 @@ map.on('fullscreenchange', function () {
         }
 
         var pattern_Bjrkemossen_2_0 = new L.StripePattern({
-            weight: 0.4,
+            weight: 0.5,
             spaceWeight: 2.0,
             color: '#c2ae19',
             opacity: 1.0,
@@ -1597,7 +1597,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #333200; font-size: 10pt; font-family: \'Helvetica\', sans-serif;">' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
+            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;">' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
