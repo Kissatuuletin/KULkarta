@@ -104,10 +104,8 @@ var map = L.map('map', {
         }
         var sidebar = L.control.sidebar('sidebar', {
     position: 'right'
-    
 });
 map.addControl(sidebar);
-
 map.addControl(new L.Control.Fullscreen());
 map.isFullscreen() // Is the map fullscreen?
 map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
@@ -147,7 +145,6 @@ map.on('fullscreenchange', function () {
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
-
         function style_Bjrkekulturmilj_1_0() {
             return {
                 pane: 'pane_Bjrkekulturmilj_1',
