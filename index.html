@@ -1597,7 +1597,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif; >' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
+            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;>' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -1610,7 +1610,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
+            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;>' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
