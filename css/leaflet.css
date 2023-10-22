@@ -267,7 +267,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* general typography */
 .leaflet-container {
-	font: 12px/1.5 "alegreya sans", Arial, Helvetica, sans-serif;
+	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	}
 
 
@@ -532,7 +532,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 
 .leaflet-oldie .leaflet-popup-content-wrapper {
-	zoom: 1;
+	-ms-zoom: 1;
 	}
 .leaflet-oldie .leaflet-popup-tip {
 	width: 24px;
