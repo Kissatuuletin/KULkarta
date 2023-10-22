@@ -87,7 +87,7 @@
      //   } //
 // const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
 var map = L.map('map', {
-            zoomControl:true, maxZoom:20, minZoom:14,
+            zoomControl:true, maxZoom:20, minZoom:14.6,
             scrollWheelZoom: false, // disable original zoom function
             smoothWheelZoom: true,  // enable smooth zoom 
             smoothSensitivity: 1,   // zoom speed. default is 1
@@ -1040,14 +1040,15 @@ map.on('fullscreenchange', function () {
         map.addLayer(layer_Fossilkermark_6);
 
         function pop_Rseberget_5(feature, layer) {
-            layer.on({
+    if (feature.properties && feature.properties.Rseberget) {
+        layer.bindTooltip(feature.properties.Rseberget, { permanent: true, direction: 'top' });
     //            mouseout: function(e) {
     //                for (i in e.target._eventParents) {
     //                    e.target._eventParents[i].resetStyle(e.target);
     //                }
     //            },
     //              mouseover: highlightFeature,
-            });
+            };
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">id</th>\
@@ -1060,7 +1061,6 @@ map.on('fullscreenchange', function () {
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
-
         function style_Rseberget_5_0() {
             return {
                 pane: 'pane_Rseberget_5',
@@ -1075,7 +1075,7 @@ map.on('fullscreenchange', function () {
             }
         }
         map.createPane('pane_Rseberget_5');
-        map.getPane('pane_Rseberget_5').style.zIndex = 405;
+        map.getPane('pane_Rseberget_5').style.zIndex = 430;
         map.getPane('pane_Rseberget_5').style['mix-blend-mode'] = 'normal';
         var layer_Rseberget_5 = new L.geoJson(json_Rseberget_5, {
             attribution: '',
@@ -1597,7 +1597,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;">' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
+            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif; >' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -1610,7 +1610,7 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #000; font-size: 11pt; font-family: \'Helvetica\', sans-serif; text-shadow: -1px -1px 1px #ffffff;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
+            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #003200; font-size: 13pt; font-family: sans-serif;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
