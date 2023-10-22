@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-measure.css">
         <link rel="stylesheet" href="css/L.Control.Sidebar.css">
         <link rel="stylesheet" href="css/sidebar.css"/>
         <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
@@ -31,9 +30,7 @@
    </div>
     <body>
         <div id="map">
-            <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
-        </div>
-        <p><a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a></p>
+            </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/multi-style-layer.js"></script>     
@@ -46,9 +43,9 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="data/textpunkt_8.js"></script>
         <script src="data/Bjrkekulturmilj_1.js"></script>
         <script src="data/Bjrkemossen_2.js"></script>
-        <script src="data/Promenadstrk_2.js"></script>
         <script src="data/Smindustriomrde_3.js"></script>
         <script src="data/Hlvg_4.js"></script>
         <script src="data/Gravflt_4.js"></script>
@@ -60,6 +57,14 @@
         <script src="data/Stensttning_9.js"></script>
         <script src="data/Gravmarkeradavsten_10.js"></script>
         <script src="data/Hllristningar_11.js"></script>
+        <script src="data/mark_0.js"></script>
+        <script src="data/markkantlinje_1.js"></script>
+        <script src="data/hojdlinje_2.js"></script>
+        <script src="data/hydrolinje_3.js"></script>
+        <script src="data/vaglinje_4.js"></script>
+        <script src="data/ovrig_vag_5.js"></script>
+        <script src="data/ralstrafik_6.js"></script>
+        <script src="data/byggnad_7.js"></script>
         <script src="js/L.Control.Sidebar.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="js/SmoothWheelZoom.js"></script>
@@ -80,38 +85,27 @@
   //            });
     //        }
      //   } //
-
-const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
+// const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
 var map = L.map('map', {
-  scrollWheelZoom: false, // disable original zoom function
-  smoothWheelZoom: true,  // enable smooth zoom 
-  smoothSensitivity: 1,   // zoom speed. default is 1
-})
-      .setView([58.85611, 11.31611], 15); //starting position
-      L.tileLayer(`https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=${maptilerApiKey}`, {
-            tileSize: 512,
-            zoomOffset: -1,
-            minZoom: 13.8,
-            attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
-            crossOrigin: true
-        }).addTo(map);
-
+            zoomControl:true, maxZoom:20, minZoom:14,
+            scrollWheelZoom: false, // disable original zoom function
+            smoothWheelZoom: true,  // enable smooth zoom 
+            smoothSensitivity: 1,   // zoom speed. default is 1
+        }).setView([58.85611, 11.31611], 15);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
+     //   function setBounds() {
+     //       map.setMaxBounds(map.getBounds();
+     //   }
         var sidebar = L.control.sidebar('sidebar', {
     position: 'right'
-    
 });
 map.addControl(sidebar);
-
 map.addControl(new L.Control.Fullscreen());
 map.isFullscreen() // Is the map fullscreen?
 map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
-
 // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
 map.on('fullscreenchange', function () {
     if (map.isFullscreen()) {
@@ -120,6 +114,445 @@ map.on('fullscreenchange', function () {
         console.log('exited fullscreen');
     }
 });
+        function pop_mark_0(feature, layer) {
+        }
+
+        function style_mark_0_0(feature) {
+            switch(String(feature.properties['objekttyp'])) {
+                case 'Anlagt vatten':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(186,208,205,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Barr- och blandskog':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(185,201,147,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Ej karterat område':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,244,221,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Fruktodling':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,237,210,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Hav':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,154,194,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Hög bebyggelse':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,173,160,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Industri- och handelsbebyggelse':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(181,179,175,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Låg bebyggelse':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(188,182,173,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Lövskog':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(142,186,112,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Sjö':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,151,183,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Sluten bebyggelse':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(179,173,165,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Vattendragsyta':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(88,125,154,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Åker':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,231,213,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'Öppen mark':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,239,238,1.0)',
+                interactive: false,
+            }
+                    break;
+                case 'NULL':
+                    return {
+                pane: 'pane_mark_0',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        function pop_textpunkt_8(feature, layer) {
+            if (feature.properties && feature.properties.karttext) {
+        layer.bindTooltip(feature.properties.karttext, { permanent: true, direction: 'top' });
+            }
+        }
+
+        function style_textpunkt_8_0() {
+            return {
+                fill: false,
+                stroke: false,
+                interactive: false
+            }
+        }
+        map.createPane('pane_textpunkt_8');
+        map.getPane('pane_textpunkt_8').style.zIndex = 450;
+        map.getPane('pane_textpunkt_8').style['mix-blend-mode'] = 'normal';
+        var layer_textpunkt_8 = new L.geoJson(json_textpunkt_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_textpunkt_8',
+            layerName: 'layer_textpunkt_8',
+            pane: 'pane_textpunkt_8',
+            onEachFeature: pop_textpunkt_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_textpunkt_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_textpunkt_8);
+        map.addLayer(layer_textpunkt_8);
+
+        map.createPane('pane_mark_0');
+        map.getPane('pane_mark_0').style.zIndex = 400;
+        map.getPane('pane_mark_0').style['mix-blend-mode'] = 'normal';
+        var layer_mark_0 = new L.geoJson(json_mark_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_mark_0',
+            layerName: 'layer_mark_0',
+            pane: 'pane_mark_0',
+            onEachFeature: pop_mark_0,
+            style: style_mark_0_0,
+        });
+        bounds_group.addLayer(layer_mark_0);
+        map.addLayer(layer_mark_0);
+        function pop_markkantlinje_1(feature, layer) {
+        }
+        function style_markkantlinje_1_0() {
+            return {
+                pane: 'pane_markkantlinje_1',
+                opacity: 1,
+                color: 'rgba(218,215,212,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_markkantlinje_1');
+        map.getPane('pane_markkantlinje_1').style.zIndex = 401;
+        map.getPane('pane_markkantlinje_1').style['mix-blend-mode'] = 'normal';
+        var layer_markkantlinje_1 = new L.geoJson(json_markkantlinje_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_markkantlinje_1',
+            layerName: 'layer_markkantlinje_1',
+            pane: 'pane_markkantlinje_1',
+            onEachFeature: pop_markkantlinje_1,
+            style: style_markkantlinje_1_0,
+        });
+        bounds_group.addLayer(layer_markkantlinje_1);
+        map.addLayer(layer_markkantlinje_1);
+        function pop_hojdlinje_2(feature, layer) {
+        }
+
+        function style_hojdlinje_2_0() {
+            return {
+                pane: 'pane_hojdlinje_2',
+                opacity: 1,
+                color: 'rgba(190,178,151,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hojdlinje_2');
+        map.getPane('pane_hojdlinje_2').style.zIndex = 402;
+        map.getPane('pane_hojdlinje_2').style['mix-blend-mode'] = 'normal';
+        var layer_hojdlinje_2 = new L.geoJson(json_hojdlinje_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hojdlinje_2',
+            layerName: 'layer_hojdlinje_2',
+            pane: 'pane_hojdlinje_2',
+            onEachFeature: pop_hojdlinje_2,
+            style: style_hojdlinje_2_0,
+        });
+        bounds_group.addLayer(layer_hojdlinje_2);
+        map.addLayer(layer_hojdlinje_2);
+        function pop_hydrolinje_3(feature, layer) {
+        }
+
+        function style_hydrolinje_3_0() {
+            return {
+                pane: 'pane_hydrolinje_3',
+                opacity: 1,
+                color: 'rgba(143,188,210,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_hydrolinje_3');
+        map.getPane('pane_hydrolinje_3').style.zIndex = 403;
+        map.getPane('pane_hydrolinje_3').style['mix-blend-mode'] = 'normal';
+        var layer_hydrolinje_3 = new L.geoJson(json_hydrolinje_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_hydrolinje_3',
+            layerName: 'layer_hydrolinje_3',
+            pane: 'pane_hydrolinje_3',
+            onEachFeature: pop_hydrolinje_3,
+            style: style_hydrolinje_3_0,
+        });
+        bounds_group.addLayer(layer_hydrolinje_3);
+        map.addLayer(layer_hydrolinje_3);
+        function pop_vaglinje_4(feature, layer) {
+        }
+
+        function style_vaglinje_4_0() {
+            return {
+                pane: 'pane_vaglinje_4',
+                stroke: false,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_vaglinje_4_1() {
+            return {
+                pane: 'pane_vaglinje_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_vaglinje_4');
+        map.getPane('pane_vaglinje_4').style.zIndex = 404;
+        map.getPane('pane_vaglinje_4').style['mix-blend-mode'] = 'normal';
+        var layer_vaglinje_4 = new L.geoJson.multiStyle(json_vaglinje_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_vaglinje_4',
+            layerName: 'layer_vaglinje_4',
+            pane: 'pane_vaglinje_4',
+            onEachFeature: pop_vaglinje_4,
+            styles: [style_vaglinje_4_0,style_vaglinje_4_1,]
+        });
+        bounds_group.addLayer(layer_vaglinje_4);
+        map.addLayer(layer_vaglinje_4);
+        function pop_ovrig_vag_5(feature, layer) {
+        }
+
+        function style_ovrig_vag_5_0() {
+            return {
+                pane: 'pane_ovrig_vag_5',
+                stroke: false,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_ovrig_vag_5_1() {
+            return {
+                pane: 'pane_ovrig_vag_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '1,5',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_ovrig_vag_5');
+        map.getPane('pane_ovrig_vag_5').style.zIndex = 405;
+        map.getPane('pane_ovrig_vag_5').style['mix-blend-mode'] = 'normal';
+        var layer_ovrig_vag_5 = new L.geoJson.multiStyle(json_ovrig_vag_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ovrig_vag_5',
+            layerName: 'layer_ovrig_vag_5',
+            pane: 'pane_ovrig_vag_5',
+            onEachFeature: pop_ovrig_vag_5,
+            styles: [style_ovrig_vag_5_0,style_ovrig_vag_5_1,]
+        });
+        bounds_group.addLayer(layer_ovrig_vag_5);
+        map.addLayer(layer_ovrig_vag_5);
+        function pop_ralstrafik_6(feature, layer) {
+        }
+
+        function style_ralstrafik_6_0() {
+            return {
+                pane: 'pane_ralstrafik_6',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        function style_ralstrafik_6_1() {
+            return {
+                pane: 'pane_ralstrafik_6',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_ralstrafik_6');
+        map.getPane('pane_ralstrafik_6').style.zIndex = 406;
+        map.getPane('pane_ralstrafik_6').style['mix-blend-mode'] = 'normal';
+        var layer_ralstrafik_6 = new L.geoJson.multiStyle(json_ralstrafik_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ralstrafik_6',
+            layerName: 'layer_ralstrafik_6',
+            pane: 'pane_ralstrafik_6',
+            onEachFeature: pop_ralstrafik_6,
+            styles: [style_ralstrafik_6_0,style_ralstrafik_6_1,]
+        });
+        bounds_group.addLayer(layer_ralstrafik_6);
+        map.addLayer(layer_ralstrafik_6);
+        function pop_byggnad_7(feature, layer) {
+        }
+
+        function style_byggnad_7_0() {
+            return {
+                pane: 'pane_byggnad_7',
+                opacity: 1,
+                color: 'rgba(168,163,155,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(188,182,173,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_byggnad_7');
+        map.getPane('pane_byggnad_7').style.zIndex = 407;
+        map.getPane('pane_byggnad_7').style['mix-blend-mode'] = 'normal';
+        var layer_byggnad_7 = new L.geoJson(json_byggnad_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_byggnad_7',
+            layerName: 'layer_byggnad_7',
+            pane: 'pane_byggnad_7',
+            onEachFeature: pop_byggnad_7,
+            style: style_byggnad_7_0,
+        });
+        bounds_group.addLayer(layer_byggnad_7);
+        map.addLayer(layer_byggnad_7);
+
         function pop_Bjrkekulturmilj_1(feature, layer) {
     //        layer.on({
     //            mouseout: function(e) {
@@ -268,56 +701,6 @@ map.on('fullscreenchange', function () {
         bounds_group.addLayer(layer_Bjrkemossen_2);
         map.addLayer(layer_Bjrkemossen_2);
 
-        function pop_Promenadstrk_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_Promenadstrk_2_0() {
-            return {
-                pane: 'pane_Promenadstrk_2',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '10,5',
-                lineCap: 'round',
-                lineJoin: 'round',
-                weight: 4.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        function style_Promenadstrk_2_1() {
-            return {
-                pane: 'pane_Promenadstrk_2',
-                opacity: 1,
-                color: 'rgba(233,235,230,1.0)',
-                dashArray: '10,5',
-                lineCap: 'round',
-                lineJoin: 'round',
-                weight: 4.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Promenadstrk_2');
-        map.getPane('pane_Promenadstrk_2').style.zIndex = 402;
-        map.getPane('pane_Promenadstrk_2').style['mix-blend-mode'] = 'normal';
-        var layer_Promenadstrk_2 = new L.geoJson.multiStyle(json_Promenadstrk_2, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Promenadstrk_2',
-            layerName: 'layer_Promenadstrk_2',
-            pane: 'pane_Promenadstrk_2',
-            onEachFeature: pop_Promenadstrk_2,
-            styles: [style_Promenadstrk_2_0,style_Promenadstrk_2_1,]
-        });
-        bounds_group.addLayer(layer_Promenadstrk_2);
-        map.addLayer(layer_Promenadstrk_2);
-
         function pop_Smindustriomrde_3(feature, layer) {
             layer.on({
                 click: showSidebar_smindustri,
@@ -328,7 +711,6 @@ map.on('fullscreenchange', function () {
      //           },
       //            mouseover: highlightFeature,
             });
-            
             function showSidebar_smindustri(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
@@ -1193,6 +1575,7 @@ sidebar.show();        }
         });
         bounds_group.addLayer(layer_Hllristningar_11);
         map.addLayer(layer_Hllristningar_11);
+
         var baseMaps = {};
         L.control.layers(baseMaps,{
             '<img src="legend/Torvstrfabrik_13.png" /> Torvströfabrik': layer_Torvstrfabrik_8,
@@ -1205,19 +1588,16 @@ sidebar.show();        }
             '<img src="legend/Gravflt_6.png" /> Gravfält': layer_Gravflt_4,
             '<img src="legend/Smindustriomrde_5.png" /> Småindustriområde': layer_Smindustriomrde_3,
             '<img src="legend/Hlvg_4.png" /> Hålväg': layer_Hlvg_4,
-            '<img src="legend/Bjrkekulturmilj_3.png" /> Björke kulturmiljö': layer_Bjrkekulturmilj_1,
-            '<img src="legend/Promenadstrk_2.png" /> Promenadstråk': layer_Promenadstrk_2,},
+            '<img src="legend/Bjrkekulturmilj_3.png" /> Björke kulturmiljö': layer_Bjrkekulturmilj_1,},
             {collapsed:false, position: 'bottomleft' }).addTo(map);
-      
         setBounds();
-
         var i = 0;
-        layer_Bjrkemossen_2.eachLayer(function(layer) {
+        layer_textpunkt_8.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #000; font-size: 11pt; font-family: \'Alegreya Sans\', sans-serif; text-shadow: -1px -1px 1px #ffffff; ">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Bjrkemossen_2'});
+            layer.bindTooltip((layer.feature.properties['karttext'] !== null?String('<div style="color: #333200; font-size: 10pt; font-family: \'Helvetica\', sans-serif;">' + layer.feature.properties['karttext']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_textpunkt_8'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -1230,22 +1610,22 @@ sidebar.show();        }
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #000; font-size: 11pt; font-family: \'Alegreya Sans\', sans-serif; text-shadow: -1px -1px 1px #ffffff;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
+            layer.bindTooltip((layer.feature.properties['Namn'] !== null?String('<div style="color: #000; font-size: 11pt; font-family: \'Helvetica\', sans-serif; text-shadow: -1px -1px 1px #ffffff;">' + layer.feature.properties['Namn']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Rseberget_5'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+        resetLabels([layer_textpunkt_8,layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         map.on("zoomend", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_textpunkt_8,layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_textpunkt_8,layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
+            resetLabels([layer_textpunkt_8,layer_Bjrkemossen_2,layer_Smindustriomrde_3,layer_Gravflt_4,layer_Fossilkermark_6, layer_Rseberget_5,layer_Hg_6,layer_Rse_7,layer_Torvstrfabrik_8,layer_Stensttning_9,layer_Gravmarkeradavsten_10,layer_Hllristningar_11]);
         });
         </script>     
     </body>
