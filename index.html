@@ -87,13 +87,13 @@
      //   } //
 // const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
 var map = L.map('map', {
-            zoomControl:true, maxZoom:20, minZoom:14,
+            zoomControl:true, maxZoom:18, minZoom:14,
             scrollWheelZoom: false, // disable original zoom function
             smoothWheelZoom: true,  // enable smooth zoom 
             smoothSensitivity: 1,   // zoom speed. default is 1
         }).setView([58.85611, 11.31611], 14);
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://www.lantmateriet.se/" target="_blank">Lantmäteriet</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
      //   function setBounds() {
@@ -1268,10 +1268,6 @@ sidebar.show();
                         <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">RAÄ nummer</th>\
-                        <td>' + (feature.properties['raa_nummer'] !== null ? autolinker.link(feature.properties['raa_nummer'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Lämningstyp</th>\
                         <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -1299,8 +1295,8 @@ sidebar.show();        }
                 opacity: 1,
                 color: 'rgba(94,88,68,1.0)',
                 dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
+                lineCap: 'round',
+                lineJoin: 'round',
                 weight: 3.0,
                 fill: true,
                 fillOpacity: 1,
