@@ -87,11 +87,11 @@
      //   } //
 // const maptilerApiKey = '1IxSL9uptGl2emy15Cbl';
 var map = L.map('map', {
-            zoomControl:true, maxZoom:20, minZoom:14.6,
+            zoomControl:true, maxZoom:20, minZoom:14,
             scrollWheelZoom: false, // disable original zoom function
             smoothWheelZoom: true,  // enable smooth zoom 
             smoothSensitivity: 1,   // zoom speed. default is 1
-        }).setView([58.85611, 11.31611], 15);
+        }).setView([58.85611, 11.31611], 14);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -893,12 +893,12 @@ map.on('fullscreenchange', function () {
                         <th scope="row">Lämningstyp</th>\
                         <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <th scope="row">Länk till RAÄ</th>\
-                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <th scope="row">Beskrivning</th>\
                         <td>' + (feature.properties['Beskrivnin'] !== null ? autolinker.link(feature.properties['Beskrivnin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row"></th>\
@@ -1543,8 +1543,8 @@ sidebar.show();        }
                 opacity: 1,
                 color: 'rgba(113,16,21,1.0)',
                 dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
+                lineCap: 'round',
+                lineJoin: 'round',
                 weight: 4.0,
                 fill: true,
                 fillOpacity: 1,
