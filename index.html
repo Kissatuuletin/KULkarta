@@ -60,6 +60,7 @@
         <script src="data/mark_0.js"></script>
         <script src="data/markkantlinje_1.js"></script>
         <script src="data/hojdlinje_2.js"></script>
+        <script src="data/Stenbrott_0.js"></script>
         <script src="data/hydrolinje_3.js"></script>
         <script src="data/vaglinje_4.js"></script>
         <script src="data/ovrig_vag_5.js"></script>
@@ -781,6 +782,81 @@ map.on('fullscreenchange', function () {
         bounds_group.addLayer(layer_Smindustriomrde_3);
         map.addLayer(layer_Smindustriomrde_3);
 
+        function pop_Stenbrott_0(feature, layer) {
+            layer.on({
+                click: showSidebar_Stenbrott,
+            });
+            function showSidebar_Stenbrott(stuff) {
+  console.log(stuff);
+  var feature = stuff.target.feature;
+  var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Lämningsnummer</th>\
+                        <td>' + (feature.properties['lamningsnr'] !== null ? autolinker.link(feature.properties['lamningsnr'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Lämningstyp</th>\
+                        <td>' + (feature.properties['lamningtyp'] !== null ? autolinker.link(feature.properties['lamningtyp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Beskrivning</th>\
+                        <td>' + (feature.properties['beskrivn'] !== null ? autolinker.link(feature.properties['beskrivn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Egenskap</th>\
+                        <td>' + (feature.properties['egenskap'] !== null ? autolinker.link(feature.properties['egenskap'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Länk till RAÄ</th>\
+                        <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row"></th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+                sidebar.setContent(popupContent,); }
+                sidebar.show();
+        }
+
+        function style_Stenbrott_0_0() {
+            return {
+                pane: 'pane_Stenbrott_0',
+                shape: 'square',
+                radius: 9.2,
+                opacity: 1,
+                color: 'rgba(209,233,235,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(12,102,130,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Stenbrott_0');
+        map.getPane('pane_Stenbrott_0').style.zIndex = 409;
+        map.getPane('pane_Stenbrott_0').style['mix-blend-mode'] = 'normal';
+        var layer_Stenbrott_0 = new L.geoJson(json_Stenbrott_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Stenbrott_0',
+            layerName: 'layer_Stenbrott_0',
+            pane: 'pane_Stenbrott_0',
+            onEachFeature: pop_Stenbrott_0,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Stenbrott_0_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Stenbrott_0);
+        map.addLayer(layer_Stenbrott_0);
+
         function pop_Hlvg_4(feature, layer) {
             layer.on({
                 click: showSidebar_Hlvg,
@@ -940,7 +1016,7 @@ map.on('fullscreenchange', function () {
             }
         }
         map.createPane('pane_Gravflt_4');
-        map.getPane('pane_Gravflt_4').style.zIndex = 404;
+        map.getPane('pane_Gravflt_4').style.zIndex = 408;
         map.getPane('pane_Gravflt_4').style['mix-blend-mode'] = 'normal';
         var layer_Gravflt_4 = new L.geoJson.multiStyle(json_Gravflt_4, {
             attribution: '',
