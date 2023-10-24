@@ -266,7 +266,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* general typography */
 .leaflet-container {
-	font: 14px/1.6  "Alegreya sans", Arial, Helvetica, sans-serif;
+	font: 14px/1.6  'Alegreya', 'Cambria', Helvetica, sans-serif;
 	}
 
 /* general toolbar styles */
