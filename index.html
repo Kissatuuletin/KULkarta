@@ -732,6 +732,10 @@ map.on('fullscreenchange', function () {
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row"></th>\
+                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
                 sidebar.setContent(popupContent,); }
                 sidebar.show();
@@ -837,7 +841,7 @@ map.on('fullscreenchange', function () {
             }
         }
         map.createPane('pane_Stenbrott_0');
-        map.getPane('pane_Stenbrott_0').style.zIndex = 409;
+        map.getPane('pane_Stenbrott_0').style.zIndex = 410;
         map.getPane('pane_Stenbrott_0').style['mix-blend-mode'] = 'normal';
         var layer_Stenbrott_0 = new L.geoJson(json_Stenbrott_0, {
             attribution: '',
@@ -1355,10 +1359,6 @@ sidebar.show();
                         <th scope="row">Länk till RAÄ</th>\
                         <td>' + (feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'] !== null ? autolinker.link(feature.properties['lank namn besk nummer stromstad — raa_lank_lamningar_stromstad_Field5'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <th scope="row"></th>\
-                        <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
-                    </tr>\
                 </table>';
 sidebar.setContent(popupContent);      
 sidebar.show();        }
@@ -1654,6 +1654,7 @@ sidebar.show();        }
             '<img src="legend/Stensttning_11.png" /> Stensättning': layer_Stensttning_9,
             '<img src="legend/Hg_10.png" /> Hög': layer_Hg_6,
             '<img src="legend/Rse_9.png" /> Röse': layer_Rse_7,
+            '<img src="legend/Stenbrott_0.png" /> Stenbrott': layer_Stenbrott_0,
             '<img src="legend/Gravmarkeradavsten_8.png" /> Grav markerad av sten': layer_Gravmarkeradavsten_10,
             '<img src="legend/Fossilkermark_7.png" /> Fossil åkermark': layer_Fossilkermark_6,
             '<img src="legend/Gravflt_6.png" /> Gravfält': layer_Gravflt_4,
