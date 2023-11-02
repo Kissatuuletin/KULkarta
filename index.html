@@ -105,6 +105,9 @@ var map = L.map('map', {
     position: 'right'
 });
 map.addControl(sidebar);
+fullscreenControl: {
+    pseudoFullscreen: true
+}
 map.addControl(new L.Control.Fullscreen());
 map.isFullscreen() // Is the map fullscreen?
 map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
