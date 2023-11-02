@@ -791,6 +791,7 @@ map.on('fullscreenchange', function () {
             layer.on({
                 click: showSidebar_Stenbrott,
             });
+        }
             function showSidebar_Stenbrott(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
@@ -820,10 +821,9 @@ map.on('fullscreenchange', function () {
                         <td>' + (feature.properties['Bild'] !== null ? autolinker.link(feature.properties['Bild'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-                sidebar.setContent(popupContent,); }
+                sidebar.setContent(popupContent,); 
                 sidebar.show();
         }
-
         function style_Stenbrott_0_0() {
             return {
                 pane: 'pane_Stenbrott_0',
@@ -1045,6 +1045,7 @@ map.on('fullscreenchange', function () {
    //             },
       //            mouseover: highlightFeature,
             });
+        }
             function showSidebar_Fossilkermark(stuff) {
   console.log(stuff);
   var feature = stuff.target.feature;
@@ -1069,10 +1070,9 @@ map.on('fullscreenchange', function () {
                         <td>' + (feature.properties['beskr'] !== null ? autolinker.link(feature.properties['Beskr'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
-                sidebar.setContent(popupContent); }
+                sidebar.setContent(popupContent); 
             sidebar.show();
         }
-
         var pattern_Fossilkermark_6_0 = new L.StripePattern({
             weight: 0.3,
             spaceWeight: 2.0,
