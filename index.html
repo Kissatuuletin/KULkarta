@@ -22,9 +22,10 @@
         <title></title>
     </head>
     <div id="sidebar">
-        <h1>Miljökompensation Lursäng</h1>
+        <h1>Välkommen till Kulturmiljön Björke och Björkemossen</h1>
         <url>Denna webbkarta visar fornlämningar och kulturhistoriska lämningar som berörs av miljökompensationen i Lursäng.<br><br>
             För att navigera bland lämningarna, klicka på de områden och punkter som syns på kartan.<br><br>
+            För mobilanvändare rekommenderar vi att stänga denna informationsruta genom att klicka på krysset, och sedan välja fullskärmsläge.<br><br>
             Informationen som används i kartan är hämtat från <a href="https://www.lantmateriet.se/" target="_blank">Lantmäteriet</a> och<a href="https://app.raa.se/open/fornsok/" target="_blank"> Riksantikvarieämbetet.</a>
         </p>
    </div>
@@ -1665,7 +1666,7 @@ sidebar.show();        }
             '<img src="legend/Smindustriomrde_5.png" /> Småindustriområde': layer_Smindustriomrde_3,
             '<img src="legend/Hlvg_4.png" /> Hålväg': layer_Hlvg_4,
             '<img src="legend/Bjrkekulturmilj_3.png" /> Björke kulturmiljö': layer_Bjrkekulturmilj_1,},
-            {collapsed:false, position: 'bottomleft' }).addTo(map);
+            {collapsed:true, position: 'bottomleft' }).addTo(map);
         setBounds();
         var i = 0;
         layer_textpunkt_8.eachLayer(function(layer) {

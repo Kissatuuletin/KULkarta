@@ -36,7 +36,7 @@
       box-shadow: none;
       border: 6px solid rgba(0, 0, 0, 0.2);
       background-clip: padding-box; }
-  @media (max-width: 767px) {
+  @media (max-width: 560px) {
     .leaflet-sidebar {
       width: 100%;
       padding: 0; }
@@ -58,7 +58,7 @@
         border-radius: 0; }
         .leaflet-touch .leaflet-sidebar > .leaflet-control {
           border: 0; } }
-  @media (min-width: 340px) and (max-width: 999px) {
+  @media (min-width: 561px) and (max-width: 999px) {
     .leaflet-sidebar {
       width: 320px; }
       .leaflet-sidebar.left.visible ~ .leaflet-left {
